@@ -8,7 +8,7 @@
 #
 
 from RPLCD.i2c import CharLCD # type: ignore
-from distillery.display import *
+from display import *
 
 version = "0.0.1"
 
