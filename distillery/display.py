@@ -8,11 +8,10 @@
 #
 
 from RPLCD.i2c import CharLCD
-from core import *
 
 lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8)
 
-def start_screen():
+def start_screen(version):
     lcd.clear() # Clear the screen
 
     # Display the welcome message

@@ -12,4 +12,4 @@ from display import *
 
 version = "0.0.1"
 
-start_screen()
+start_screen(version)
