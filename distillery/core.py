@@ -21,14 +21,16 @@ version = "0.0.1"
 
 # Show initial screen for at least 5 seconds
 start_screen(version)
-time.sleep(1)
+time.sleep(3)
 
 # Set initial values
 update_screen("--", "--", "STARTUP", "OFF", "OFF")
 
 t1 = Thread(target = start_reading_dial)
 t2 = Thread(target = run_heating)
+t3 = Thread(target = start_reading_temp)
 
 print("Starting threads..")
 t1.start()
 t2.start()
+t3.start()
