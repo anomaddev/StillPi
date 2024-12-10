@@ -1,8 +1,8 @@
 #! /bin/sh
-export version="0.0.2"
+export DISTILLERY_VERSION="0.0.2"
 
 # Start the distillery application
-cd StillPi/distillery
+cd StillPi/distillery/scripts
 
 # Show the splash screen
-python3 -c'import display; display.start_screen(${!version})'
+python3 startup.py
