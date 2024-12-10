@@ -14,6 +14,12 @@ relay_two = 24
 def setup_relays():
     GPIO.setup(relay_one, GPIO.OUT)
     GPIO.setup(relay_two, GPIO.OUT)
+    print("Relays setup complete")
+    print("Relay 1: " + str(relay_one))
+    print("Relay 2: " + str(relay_two))
+    print()
+    
+    test_relays()
 
 def test_relays():
     print("Relay test starting..")
