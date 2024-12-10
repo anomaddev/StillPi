@@ -62,9 +62,9 @@ def trigger_relay(relay, state):
     last = last_trigger[relay]
 
     if time.time() - last < 3:
-        print("Relay " + str(relay) + " cannot be triggered again so soon")
+        print("Relay " + str(relay.value) + " cannot be triggered again so soon")
         return
     else:
         last_trigger[relay] = time.time()
         GPIO.output(relay.value, state.value)
-        print("Relay " + str(relay) + " triggered: " + str(state))
+        print("Relay " + str(relay.value) + " triggered: " + str(state))
