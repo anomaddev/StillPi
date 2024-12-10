@@ -36,7 +36,13 @@ def setup():
 # Setup the controller
 setup()
 
+# Sleep mode
+def sleep():
+    # Cleanup the relay GPIOs
+    sleep_relays()
 
+# Sleep the controller
+sleep()
 
 # Set initial values
 # update_screen("--", "--", "STARTUP", "OFF", "OFF")
