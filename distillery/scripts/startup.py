@@ -17,8 +17,9 @@ print()
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
 from display import *
 
-start_screen(version)
-time.sleep(1.5)
+def splash():
+    start_screen(version)
+    time.sleep(1.5)
 
 def isUpdating():
     show_text_on_line(3, "Updating..", True)
