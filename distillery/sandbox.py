@@ -37,3 +37,5 @@ def relay_test():
     print("Relay test complete")
 
 relay_test()
+
+GPIO.cleanup()
