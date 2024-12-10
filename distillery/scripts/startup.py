@@ -5,7 +5,7 @@
 #
 #
 
-from distillery.display import start_screen
+from display import start_screen
 import os
 
 version = os.environ['DISTILLERY_VERSION']
