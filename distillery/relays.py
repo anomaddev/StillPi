@@ -12,6 +12,7 @@ relay_one = 23
 relay_two = 24
 
 def setup_relays():
+    GPIO.cleanup()
     GPIO.setup(relay_one, GPIO.OUT)
     GPIO.setup(relay_two, GPIO.OUT)
     print("Relays setup complete")
