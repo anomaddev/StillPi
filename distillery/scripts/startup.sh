@@ -6,9 +6,4 @@ python3 startup.py
 
 # Check for updates
 cd /home/justinackermann/StillPi/distillery
-if [[ `git status --porcelain` ]]; then
-    echo "Changes detected in the distillery directory. Pulling latest changes..."
-    git pull
-else
-    echo "No changes detected in the distillery directory."
-fi
+git remote update && git status
