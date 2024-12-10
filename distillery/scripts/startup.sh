@@ -5,5 +5,7 @@ export DISTILLERY_VERSION="0.0.2"
 python3 startup.py
 
 # Check for updates
+echo "Checking for updates..."
 cd /home/justinackermann/StillPi/distillery
-git remote update && git status
+
+git remote update && git status && git pull origin main
