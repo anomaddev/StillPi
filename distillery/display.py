@@ -14,6 +14,14 @@ def lcd_show_message(message):
     lcd.clear() # Clear the screen
     lcd.write_string(message)
 
+def show_text_on_line(line, text, center=False):
+    write = text
+    if center:
+        write = text.center(20)
+
+    lcd.cursor_pos = (line, 0)
+    lcd.write_string(write)
+
 def start_screen(version):
     lcd.clear() # Clear the screen
 

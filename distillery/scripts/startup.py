@@ -7,6 +7,7 @@
 
 import sys
 import os
+import time
 
 version = os.environ['DISTILLERY_VERSION']
 print("Starting DistilleryPi..")
@@ -17,4 +18,7 @@ sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
 from display import *
 
 start_screen(version)
+time.sleep(1.5)
 
+show_text_on_line(3, "Updating...", center=True)
+    
