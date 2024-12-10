@@ -7,42 +7,31 @@
 #
 #
 
-# GPIO
-import RPi.GPIO as GPIO # type: ignore
-
-# I2C Devices
-from RPLCD.i2c import CharLCD # type: ignore
-
-from display import *
-from relays import *
-
 from threading import Thread
-
-import time
 
 version = "0.0.1"
 
 # Show initial screen for at least 5 seconds
-start_screen(version)
-time.sleep(3)
+# start_screen(version)
+# time.sleep(3)
 
-def setup():
-    # Set GPIO mode
-    GPIO.setmode(GPIO.BCM)
+# def setup():
+#     # Set GPIO mode
+#     GPIO.setmode(GPIO.BCM)
 
-    # Setup the relays
-    setup_relays()
+#     # Setup the relays
+#     setup_relays()
 
-# Setup the controller
-setup()
+# # Setup the controller
+# setup()
 
-# Sleep mode
-def sleep():
-    # Cleanup the relay GPIOs
-    sleep_relays()
+# # Sleep mode
+# def sleep():
+#     # Cleanup the relay GPIOs
+#     sleep_relays()
 
-# Sleep the controller
-sleep()
+# # Sleep the controller
+# sleep()
 
 # Set initial values
 # update_screen("--", "--", "STARTUP", "OFF", "OFF")
