@@ -5,11 +5,14 @@
 #
 #
 
-from display import start_screen
+import sys
 import os
 
 version = os.environ['DISTILLERY_VERSION']
 print("Starting DistilleryPi..")
 print("Version: " + version)
+
+sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
+from display import *
 
 start_screen(version)
