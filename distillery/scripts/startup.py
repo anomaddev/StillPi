@@ -16,3 +16,4 @@ sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
 from display import *
 
 start_screen(version)
+

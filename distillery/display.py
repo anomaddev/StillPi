@@ -3,8 +3,6 @@
 # Date Created: 12/01/2024
 # Author: Justin Ackermann
 #
-# Description: This file contains the core functionality of the distillery
-#
 #
 
 from RPLCD.i2c import CharLCD # type: ignore
