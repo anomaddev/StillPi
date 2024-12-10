@@ -14,7 +14,6 @@ import RPi.GPIO as GPIO # type: ignore
 from RPLCD.i2c import CharLCD # type: ignore
 
 from display import *
-from temperature import *
 from relays import *
 
 from threading import Thread
