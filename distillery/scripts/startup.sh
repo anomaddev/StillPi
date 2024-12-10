@@ -1,5 +1,5 @@
 #! /bin/sh
-version="0.0.2"
+export version="0.0.2"
 
 # Start the distillery application
 cd StillPi/distillery
