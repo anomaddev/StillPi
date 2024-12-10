@@ -27,8 +27,8 @@ time.sleep(3)
 update_screen("--", "--", "STARTUP", "OFF", "OFF")
 
 t1 = Thread(target = start_reading_dial)
-t2 = Thread(target = run_heating)
-t3 = Thread(target = start_reading_temp)
+t2 = Thread(target = start_reading_temp)
+t3 = Thread(target = heating_loop)
 
 print("Starting threads..")
 t1.start()
