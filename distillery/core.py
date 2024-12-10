@@ -7,11 +7,15 @@
 #
 #
 
+# GPIO
+import RPi.GPIO as GPIO # type: ignore
+
 # I2C Devices
 from RPLCD.i2c import CharLCD # type: ignore
 
 from display import *
 from temperature import *
+from relays import *
 
 from threading import Thread
 
@@ -23,14 +27,26 @@ version = "0.0.1"
 start_screen(version)
 time.sleep(3)
 
+def setup():
+    # Set GPIO mode
+    GPIO.setmode(GPIO.BCM)
+
+    # Setup the relays
+    setup_relays()
+
+# Setup the controller
+setup()
+
+
+
 # Set initial values
-update_screen("--", "--", "STARTUP", "OFF", "OFF")
+# update_screen("--", "--", "STARTUP", "OFF", "OFF")
 
-t1 = Thread(target = start_reading_dial)
-t2 = Thread(target = start_reading_temp)
-t3 = Thread(target = heating_loop)
+# t1 = Thread(target = start_reading_dial)
+# t2 = Thread(target = start_reading_temp)
+# t3 = Thread(target = heating_loop)
 
-print("Starting threads..")
-t1.start()
-t2.start()
-t3.start()
+# print("Starting threads..")
+# t1.start()
+# t2.start()
+# t3.start()
