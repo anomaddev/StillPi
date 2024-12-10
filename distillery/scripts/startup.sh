@@ -2,7 +2,7 @@
 export DISTILLERY_VERSION="0.0.2"
 
 # Show the splash screen & do some initial setup
-python3 startup.py
+python3 /home/justinackermann/StillPi/distillery/scripts/startup.py
 
 # Check for updates
 echo "Checking for updates..."
