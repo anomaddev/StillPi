@@ -20,5 +20,6 @@ from display import *
 start_screen(version)
 time.sleep(1.5)
 
-show_text_on_line(3, "Updating...", center=True)
+def isUpdating():
+    show_text_on_line(3, "Updating..", True)
     
