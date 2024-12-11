@@ -9,8 +9,6 @@ import time
 
 from RPLCD.i2c import CharLCD # type: ignore
 
-from src.i2c_devices import *
-
 lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
 
 def lcd_show_message(message):
