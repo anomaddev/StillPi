@@ -28,7 +28,6 @@ class RelayState(Enum):
     ON = 1
 
 def setup_relays():
-    GPIO.cleanup()
     GPIO.setup(relay_one, GPIO.OUT)
     GPIO.setup(relay_two, GPIO.OUT)
     print("Relays setup complete")
@@ -56,10 +55,10 @@ def sleep_relays():
     print()
 
 def test_relay(relay):
-    try:
-        print("Relay test starting..")
-        time.sleep(1)
+    print("Relay test starting..")
+    time.sleep(1)
     
+    try:
         show_text_on_line(3, relay + " Test ON")
         trigger_relay(relay, RelayState.ON)
         time.sleep(3)

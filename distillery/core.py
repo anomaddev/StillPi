@@ -14,6 +14,7 @@ import os
 import time
 
 from src.relays import *
+from src.display import *
 
 initial_load = True
 version = os.environ['DISTILLERY_VERSION']
