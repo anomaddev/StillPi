@@ -16,7 +16,9 @@ import adafruit_tca9548a
 sudo_pass = '5524Wildcats$$'
 version = os.environ['DISTILLERY_VERSION']
 
-# Create I2C bus as normal
+# Create I2C bus and enable
+from src.i2c_devices import *
+
 i2c = board.I2C()
 
 # Create the TCA9548A object and give it the I2C bus
@@ -27,7 +29,6 @@ enable_channels(bus, [2, 7])
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery/src"))
 from src.display import *
-from src.i2c_devices import *
 from core import *
 
 # Start the distillery at power on
