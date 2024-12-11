@@ -8,7 +8,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def button_press(button):
-    print("Button pressed!")
     if GPIO.input(button) == GPIO.HIGH:
         print("Button depressed!")
     else:
