@@ -37,7 +37,16 @@ def core_function():
         show_text_on_line(3, "Heater SSRs Ready")
         time.sleep(2.5)
 
+        # Initialize the screen
         init_screen()
+        time.sleep(2.5)
+
+        # Get initial temperature reading
+        stabilize_temp()
+
+def stabilize_temp():
+    print("Stabilizing temperature..")
+    print()
 
 def program_loop():
     print("Starting program loop..")

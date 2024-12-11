@@ -100,12 +100,12 @@ def update_target(target_temp):
 
 def update_temp(current_temp):
     temp = str(current_temp) + "F"
-    lcd.cursor_pos = (1, 9)
-    lcd.write_string(temp)
+    lcd.cursor_pos = (1, 6)
 
     if len(temp) < 4:
-        lcd.cursor_pos = (1, 12)
         lcd.write_string(" ")
+
+    lcd.write_string(temp)
 
 def update_status(status):
     lcd.cursor_pos = (3, 8)
