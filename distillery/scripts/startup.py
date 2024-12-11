@@ -10,15 +10,18 @@ import os
 import time
 
 version = os.environ['DISTILLERY_VERSION']
-print("Starting DistilleryPi..")
-print("Version: " + version)
-print()
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
 from display import *
 
-start_screen(version)
-time.sleep(1.5)
+def splash();
+    print("Starting DistilleryPi..")
+    print("Version: " + version)
+    print()
 
-show_text_on_line(3, "Updating..", True)
+    start_screen(version)
+    time.sleep(1.5)
+
+def updating():
+    show_text_on_line(3, "Updating..", True)
     
