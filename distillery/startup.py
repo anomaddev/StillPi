@@ -105,7 +105,9 @@ def reboot_raspberry_pi():
 
 if not did_update:
     print("No updates needed.")
-    time.sleep(1.5)
+    time.sleep(2)
+    show_text_on_line(3, "No Updates Needed")
+    time.sleep(2)
     show_text_on_line(3, "Starting program..")
     print("Starting distillery..")
 
@@ -114,9 +116,9 @@ else:
     print("Initiating reboot..")
 
     show_text_on_line(3, "Software Updated")
-    time.sleep(1.5)
+    time.sleep(2)
     show_text_on_line(3, "Rebooting..")
-    time.sleep(1.5)
+    time.sleep(2)
     
     reboot_raspberry_pi()
     
