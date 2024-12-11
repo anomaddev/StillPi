@@ -21,16 +21,6 @@ from src.interface import *
 
 version = os.environ['DISTILLERY_VERSION']
 
- # Create I2C bus as normal
-i2c = board.I2C()
-
-# Create the TCA9548A object and give it the I2C bus
-tca = adafruit_tca9548a.TCA9548A(i2c)
-bus = smbus2.SMBus(1)
-
-select_channel(bus, 2)
-lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
-
 def core_function():
     print("Beginning core functionality..")
     print("Version: " + version)
