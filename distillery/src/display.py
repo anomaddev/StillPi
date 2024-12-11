@@ -119,6 +119,7 @@ def update_target(target_temp):
 
 def update_temp(current_temp):
     select_channel(bus, 2)
+    
     temp = str(current_temp) + "F"
     lcd.cursor_pos = (1, 6)
 
@@ -129,6 +130,7 @@ def update_temp(current_temp):
 
 def update_status(status):
     select_channel(bus, 2)
+
     lcd.cursor_pos = (3, 8)
     lcd.write_string(status)
 
