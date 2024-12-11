@@ -10,6 +10,8 @@ import os
 import time
 import subprocess
 
+import git
+
 version = os.environ['DISTILLERY_VERSION']
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
@@ -25,16 +27,7 @@ time.sleep(1.5)
 
 # Check for updates
 show_text_on_line(3, "Updating..", True)
-    
-# Pull the latest version from the git repository
-try:
-    command = "cd /home/justinackermann/StillPi && git pull"
-    result = subprocess.check_output(command, shell=True)
-    print(result.decode("utf-8"))
-    time.sleep(2)
 
-except subprocess.CalledProcessError as e:
-    print(f"Error: {e.output.decode('utf-8')}")
-    show_text_on_line(3, "Update Failed", True)
-    time.sleep(2)
-    show_text_on_line(3, "Continuing..", True)
+repo = git.Repo("/home/justinackermann/StillPi")
+repo.remotes.origin.pull()
+
