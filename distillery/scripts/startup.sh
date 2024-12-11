@@ -2,5 +2,5 @@
 export DISTILLERY_VERSION="0.0.2"
 
 # Start the distillery
-python3 startup.py
+sudo python3 startup.py
 
