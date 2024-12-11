@@ -91,12 +91,12 @@ def update_screen(target_temp, current_temp, status, heater1, heater2):
 
 def update_target(target_temp):
     temp = str(target_temp) + "F"
-    lcd.cursor_pos = (0, 9)
-    lcd.write_string(temp)
-
+    lcd.cursor_pos = (0, 6)
+    
     if len(temp) < 4:
-        lcd.cursor_pos = (0, 12)
         lcd.write_string(" ")
+
+    lcd.write_string(temp)
 
 def update_temp(current_temp):
     temp = str(current_temp) + "F"
