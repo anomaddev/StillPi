@@ -5,7 +5,7 @@
 #
 #
 
-from max6675 import MAX6675
+from MAX6675 import MAX6675
 
 cs = 22
 sck = 18
