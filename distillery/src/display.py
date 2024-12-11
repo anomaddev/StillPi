@@ -5,10 +5,8 @@
 #
 #
 
-from RPLCD.i2c import CharLCD # type: ignore
 import time
-
-lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
+from core import lcd
 
 def lcd_show_message(message):
     lcd.clear() # Clear the screen

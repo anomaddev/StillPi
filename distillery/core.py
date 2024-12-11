@@ -8,6 +8,7 @@
 #
 
 from threading import Thread
+from RPLCD.i2c import CharLCD # type: ignore
 import RPi.GPIO as GPIO
 
 import os
@@ -15,6 +16,8 @@ import time
 
 from src.relays import *
 from src.display import *
+
+lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
 
 initial_load = True
 version = os.environ['DISTILLERY_VERSION']
