@@ -22,7 +22,7 @@ print("Starting DistilleryPi..")
 print("Version: " + version)
 print()
 
-start_screen(lcd, version)
+start_screen(version)
 time.sleep(2)
 
 # Check for updates
