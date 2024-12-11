@@ -16,7 +16,7 @@ import sys
 
 from src.relays import *
 from src.display import *
-from src.interfaces import *
+from src.interface import *
 
 initial_load = True
 version = os.environ['DISTILLERY_VERSION']
