@@ -44,4 +44,4 @@ def start_button_await():
     GPIO.remove_event_detect(start_button)
     return
 
-    
+
