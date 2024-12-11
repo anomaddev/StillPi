@@ -9,20 +9,26 @@ import time
 
 from RPLCD.i2c import CharLCD # type: ignore
 
+import smbus2
 import board
 import adafruit_tca9548a
+
+from src.i2c_devices import *
 
 # Create I2C bus as normal
 i2c = board.I2C()
 
 # Create the TCA9548A object and give it the I2C bus
 tca = adafruit_tca9548a.TCA9548A(i2c)
+bus = smbus2.SMBus(1)
 
-lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
+def lcd():
+    select_channel(bus, 2)
+    return CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
 
 def lcd_show_message(message):
-    lcd.clear() # Clear the screen
-    lcd.write_string(message)
+    lcd().clear() # Clear the screen
+    lcd().write_string(message)
 
 def clear_line(line):
     lcd.cursor_pos = (line, 0)
