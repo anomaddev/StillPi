@@ -5,27 +5,13 @@
 #
 #
 
-import smbus2
-import board
 import sys
 import os
 import time
 import subprocess
-import adafruit_tca9548a
 
 sudo_pass = '5524Wildcats$$'
 version = os.environ['DISTILLERY_VERSION']
-
-# Create I2C bus and enable
-from src.i2c_devices import *
-
-i2c = board.I2C()
-
-# Create the TCA9548A object and give it the I2C bus
-tca = adafruit_tca9548a.TCA9548A(i2c)
-bus = smbus2.SMBus(1)
-
-enable_channels(bus, [2, 7])
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery/src"))
 from src.display import *
