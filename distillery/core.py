@@ -60,6 +60,8 @@ def core_function():
 
     # Start the program loop
     program_loop()
+
+    GPIO.cleanup()
         
         
 
@@ -73,8 +75,21 @@ def program_loop():
     print()
     
     global state
+
+    # Start heating
     state = ControllerState.HEATING
     update_status("HEATING")
+
+    # Turn on the heaters
+    trigger_relay(Relay.ONE, RelayState.ON)
+    trigger_relay(Relay.TWO, RelayState.ON)
+
     update_heater1("ON")
     update_heater2("ON")
-        
+
+    time.sleep(5) # Let the heaters warm up
+
+    while state != ControllerState.COMPLETE:
+        # Check the temperature
+        update_target(180)
+        time.sleep(0.2)
