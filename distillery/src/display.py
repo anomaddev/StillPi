@@ -43,10 +43,10 @@ def init_screen():
 
     # Display the target temperature
     lcd.cursor_pos = (0, 0)
-    lcd.write_string("SET: ---F")
+    lcd.write_string("SET:  ---F")
 
     # Display the heater1 status
-    lcd.cursor_pos = (0, 14)
+    lcd.cursor_pos = (0, 13)
     lcd.write_string("H1: OFF")
 
     # Display the current temperature
@@ -54,7 +54,7 @@ def init_screen():
     lcd.write_string("REAL: ---F")
 
     # Display the heater2 status
-    lcd.cursor_pos = (1, 14)
+    lcd.cursor_pos = (1, 13)
     lcd.write_string("H2: OFF")
 
     # Display the status
