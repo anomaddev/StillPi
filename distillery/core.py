@@ -9,7 +9,7 @@
 
 from threading import Thread
 
-version = "0.0.1"
+version = "0.0.3"
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)
