@@ -46,9 +46,7 @@ def show_text_on_line(line, text, center=True):
     lcd.cursor_pos = (line, 0)
     lcd.write_string(write)
 
-def start_screen(version):
-    lcd = get_lcd()
-
+def start_screen(lcd, version):
     lcd.clear() # Clear the screen
 
     # Display the welcome message
