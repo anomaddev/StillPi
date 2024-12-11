@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 button_pin = 12
 
 # Set GPIO mode
+GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
