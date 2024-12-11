@@ -47,6 +47,7 @@ def core_function():
 def stabilize_temp():
     print("Stabilizing temperature..")
     print()
+    update_temp("72")
 
 def program_loop():
     print("Starting program loop..")
