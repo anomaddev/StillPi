@@ -9,7 +9,6 @@ import RPi.GPIO as GPIO
 import time
 
 from enum import Enum
-from display import *
 
 relay_one = 23
 relay_two = 24
@@ -66,15 +65,12 @@ def test_relay(relay):
     time.sleep(1)
     
     try:
-        show_text_on_line(3, str(relay) + " Test ON")
         trigger_relay(relay, RelayState.ON)
         time.sleep(3)
     
-        show_text_on_line(3, str(relay) + " Test OFF")
         trigger_relay(relay, RelayState.OFF)
         time.sleep(1)
 
-        show_text_on_line(3, str(relay) + " Fail Test")
         trigger_relay(relay, RelayState.ON)
     except Exception as e:
         raise Exception("FAILED SUCCESSFULLY")
