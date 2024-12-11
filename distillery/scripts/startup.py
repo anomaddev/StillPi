@@ -32,10 +32,9 @@ try:
     result = subprocess.check_output(command, shell=True)
     print(result.decode("utf-8"))
     time.sleep(2)
-    sys.exit()
 
 except subprocess.CalledProcessError as e:
     print(f"Error: {e.output.decode('utf-8')}")
     show_text_on_line(3, "Update Failed", True)
     time.sleep(2)
-    sys.exit()
+    show_text_on_line(3, "Continuing..", True)
