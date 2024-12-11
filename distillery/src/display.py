@@ -38,6 +38,29 @@ def start_screen(version):
     lcd.cursor_pos = (3, 3)
     lcd.write_string("Initializing..")
 
+def init_screen():
+    lcd.clear() # Clear the screen
+
+    # Display the target temperature
+    lcd.cursor_pos = (0, 0)
+    lcd.write_string("SET: ---F")
+
+    # Display the heater1 status
+    lcd.cursor_pos = (0, 14)
+    lcd.write_string("H1: OFF")
+
+    # Display the current temperature
+    lcd.cursor_pos = (1, 0)
+    lcd.write_string("REAL: ---F")
+
+    # Display the heater2 status
+    lcd.cursor_pos = (1, 14)
+    lcd.write_string("H2: OFF")
+
+    # Display the status
+    lcd.cursor_pos = (3, 0)
+    lcd.write_string("STATUS: STABALIZING")
+
 def update_screen(target_temp, current_temp, status, heater1, heater2):
     lcd.clear() # Clear the screen
 

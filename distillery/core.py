@@ -35,11 +35,14 @@ def core_function():
         # Setup the relays
         setup_relays()
         show_text_on_line(3, "Relays Ready")
+        time.sleep(1)
+
+        init_screen()
 
 def program_loop():
     print("Starting program loop..")
     print()
-    
+
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)
