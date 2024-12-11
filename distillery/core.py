@@ -27,12 +27,9 @@ def core_function():
     if initial_load:
         # Set GPIO mode
         GPIO.setmode(GPIO.BCM)
-        try:
-            # Setup the relays
-            setup_relays()
-        except Exception as e:
-            print("Error setting up relays:", e)
-            return
+        
+        # Setup the relays
+        setup_relays()
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)
