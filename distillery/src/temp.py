@@ -5,13 +5,13 @@
 #
 #
 
-import MAX6675.MAX6675 as MAX6675
+from max6675 import MAX6675
 
 cs = 22
 sck = 18
 so = 16
 
-max = MAX6675.MAX6675(cs, sck, so)
+max = MAX6675(cs, sck, so)
 
 try:
     while 1:
