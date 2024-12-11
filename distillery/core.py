@@ -12,6 +12,7 @@ import RPi.GPIO as GPIO
 
 import os
 import time
+import sys
 
 from src.relays import *
 from src.display import *
@@ -33,6 +34,8 @@ def core_function():
         
         # Setup the relays
         setup_relays()
+
+    sys.exit()
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)
