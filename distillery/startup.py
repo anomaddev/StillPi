@@ -10,6 +10,7 @@ import os
 import time
 import subprocess
 
+sudo_pass = '5524Wildcats$$'
 version = os.environ['DISTILLERY_VERSION']
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery/src"))
@@ -91,13 +92,15 @@ did_update = git_updates()
 def reboot_raspberry_pi():
     try:
         # Ensure the script is run with sudo or root privileges
-        if os.geteuid() != 0:
-            print("This script requires root privileges. Please run with sudo.")
-            return
+        # if os.geteuid() != 0:
+        #     print("This script requires root privileges. Please run with sudo.")
+        #     return
         
         # Use subprocess to call the reboot command
         print("Rebooting Raspberry Pi...")
-        subprocess.run(["sudo", "reboot"], check=True)
+        command = "reboot"
+        os.system('echo %s|sudo -S %s' % (sudo_pass, command))
+        
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while trying to reboot: {e}")
     except Exception as e:
