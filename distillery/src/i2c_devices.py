@@ -25,3 +25,17 @@ def select_channel(bus, channel):
         bus.write_byte(TCA_ADDR, 1 << channel)
     else:
         raise ValueError("Channel must be in range 0-7")
+    
+def enable_channels(bus, channels):
+    """
+    Enable multiple channels on the TCA9548A.
+    :param bus: SMBus object
+    :param channels: List of channels to enable (e.g., [0, 1])
+    """
+    if all(0 <= channel <= 7 for channel in channels):
+        # Create the bitmask by setting bits for all selected channels
+        bitmask = sum(1 << channel for channel in channels)
+        bus.write_byte(TCA_ADDR, bitmask)
+        print(f"Enabled channels: {channels}")
+    else:
+        raise ValueError("Channel numbers must be between 0 and 7")
