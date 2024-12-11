@@ -34,8 +34,7 @@ def core_function():
         
         # Setup the relays
         setup_relays()
-
-    sys.exit()
+        show_text_on_line(3, "Relays Ready")
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)

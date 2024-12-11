@@ -113,6 +113,7 @@ if not did_update:
     show_text_on_line(3, "No Updates Needed")
     time.sleep(2)
     show_text_on_line(3, "Starting program..")
+    
     time.sleep(2)
     core_function()
 
