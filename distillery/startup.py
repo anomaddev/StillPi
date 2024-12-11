@@ -14,7 +14,8 @@ sudo_pass = '5524Wildcats$$'
 version = os.environ['DISTILLERY_VERSION']
 
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery/src"))
-from display import *
+from src.display import *
+from core import *
 
 # Start the distillery at power on
 print("Starting DistilleryPi..")
@@ -112,7 +113,8 @@ if not did_update:
     show_text_on_line(3, "No Updates Needed")
     time.sleep(2)
     show_text_on_line(3, "Starting program..")
-    print("Starting distillery..")
+    time.sleep(2)
+    core_function()
 
 else:
     print("Did update software:", did_update)

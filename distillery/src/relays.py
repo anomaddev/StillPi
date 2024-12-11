@@ -9,6 +9,7 @@ import RPi.GPIO as GPIO
 import time
 
 from enum import Enum
+from display import *
 
 relay_one = 23
 relay_two = 24
@@ -35,25 +36,45 @@ def setup_relays():
     print("Relay 2: " + str(relay_two))
     print()
     
-    test_relays()
+    try:
+        test_relay(Relay.ONE)
+    except Exception as e:
+        print(e)
+        print("Relay 1 test failed")
+        print()
+
+    try:
+        test_relay(Relay.TWO)
+    except Exception as e:
+        print(e)
+        print("Relay 2 test failed")
+        print()
 
 def sleep_relays():
     GPIO.cleanup()
     print("Relays cleaned up for sleep mode")
     print()
 
-def test_relays():
-    print("Relay test starting..")
-    time.sleep(1)
-    print("Relay 1 Triggering ON")
-    trigger_relay(Relay.ONE, RelayState.ON)
-    time.sleep(3)
-    print("Relay 1 Triggering OFF")
-    trigger_relay(Relay.ONE, RelayState.OFF)
-    time.sleep(1)
-    print("Relay 1 Triggering ON - should fail")
-    trigger_relay(Relay.ONE, RelayState.ON)
-    time.sleep(1)
+def test_relay(relay):
+    try:
+        print("Relay test starting..")
+        time.sleep(1)
+    
+        show_text_on_line(3, relay + " Test ON")
+        trigger_relay(relay, RelayState.ON)
+        time.sleep(3)
+    
+        show_text_on_line(3, relay + " Test OFF")
+        trigger_relay(relay, RelayState.OFF)
+        time.sleep(1)
+
+        show_text_on_line(3, relay + " Fail Test")
+        trigger_relay(relay, RelayState.ON)
+        time.sleep(1)
+    except Exception as e:
+        raise e
+
+    
 
     print("Relay test complete")
     print()
@@ -62,8 +83,7 @@ def trigger_relay(relay, state):
     last = last_trigger[relay]
 
     if time.time() - last < 3:
-        print("Relay " + str(relay.value) + " cannot be triggered again so soon")
-        return
+        raise Exception("Relay " + str(relay.value) + " cannot be triggered again so soon")
     else:
         last_trigger[relay] = time.time()
         GPIO.output(relay.value, state.value)

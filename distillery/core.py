@@ -8,8 +8,27 @@
 #
 
 from threading import Thread
+import RPi.GPIO as GPIO
 
-version = "0.0.3"
+import os
+import time
+
+from src.relays import *
+
+initial_load = True
+version = os.environ['DISTILLERY_VERSION']
+
+def core_function():
+    print("Beginning core functionality..")
+    print("Version: " + version)
+    print()
+
+    if initial_load:
+        # Set GPIO mode
+        GPIO.setmode(GPIO.BCM)
+
+        # Setup the relays
+        setup_relays()
 
 # Show initial screen for at least 5 seconds
 # start_screen(version)
