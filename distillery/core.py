@@ -25,6 +25,8 @@ def core_function():
     print()
 
     if initial_load:
+        initial_load = False
+        
         # Set GPIO mode
         GPIO.setmode(GPIO.BCM)
         
