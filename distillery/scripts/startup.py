@@ -34,7 +34,7 @@ try:
     time.sleep(2)
     sys.exit()
 
-except:
+except subprocess.CalledProcessError as e:
     print(f"Error: {e.output.decode('utf-8')}")
     show_text_on_line(3, "Update Failed", True)
     time.sleep(2)
