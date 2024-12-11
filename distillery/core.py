@@ -89,7 +89,7 @@ def program_loop():
 
     time.sleep(5) # Let the heaters warm up
 
+    update_target(180)
     while state != ControllerState.COMPLETE:
         # Check the temperature
-        update_target(180)
         time.sleep(0.2)
