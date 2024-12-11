@@ -17,7 +17,7 @@ def lcd_show_message(message):
 def show_text_on_line(line, text, center=True):
     write = text
     if center:
-        write = text.center(20)
+        write = text.center(20, " ")
 
     lcd.cursor_pos = (line, 0)
     lcd.write_string(write)
