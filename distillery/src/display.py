@@ -16,7 +16,7 @@ def lcd_show_message(message):
 
 def clear_line(line):
     lcd.cursor_pos = (line, 0)
-    lcd.print(" " * 20)
+    lcd.write_string(" " * 20)
 
 def show_text_on_line(line, text, center=True):
     write = text
