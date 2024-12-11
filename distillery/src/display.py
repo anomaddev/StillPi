@@ -9,6 +9,15 @@ import time
 
 from RPLCD.i2c import CharLCD # type: ignore
 
+import board
+import adafruit_tca9548a
+
+# Create I2C bus as normal
+i2c = board.I2C()
+
+# Create the TCA9548A object and give it the I2C bus
+tca = adafruit_tca9548a.TCA9548A(i2c)
+
 lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
 
 def lcd_show_message(message):
@@ -92,7 +101,7 @@ def update_screen(target_temp, current_temp, status, heater1, heater2):
 def update_target(target_temp):
     temp = str(target_temp) + "F"
     lcd.cursor_pos = (0, 6)
-    
+
     if len(temp) < 4:
         lcd.write_string(" ")
 
