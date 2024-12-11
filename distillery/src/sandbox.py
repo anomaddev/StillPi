@@ -12,7 +12,7 @@ import board
 import adafruit_tca9548a
 
 i2c = board.I2C()
-adafruit_tca9548a.TCA9548A(i2c)
+tca = adafruit_tca9548a.TCA9548A(i2c)
 
 for channel in range(8):
     if tca[channel].try_lock():
