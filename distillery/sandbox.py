@@ -7,34 +7,65 @@
 #
 #
 
-import RPi.GPIO as GPIO
-import time
+import subprocess
 
-relay_one = 23
-relay_two = 24
+def check_and_update_remote():
+    try:
+        # Check the current branch
+        branch_result = subprocess.run(
+            ["git", "branch", "--show-current"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        current_branch = branch_result.stdout.strip()
 
-GPIO.setmode(GPIO.BCM)
+        if branch_result.returncode != 0 or not current_branch:
+            print("Error determining current branch:", branch_result.stderr.strip())
+            return
 
-GPIO.setup(relay_one, GPIO.OUT)
-GPIO.setup(relay_two, GPIO.OUT)
+        print(f"Current branch: {current_branch}")
 
-def relay_test():
-    print("Relay test starting..")
-    time.sleep(1)
-    print("Relay 1 Triggering ON")
-    GPIO.output(relay_one, GPIO.HIGH)
-    time.sleep(3)
-    print("Relay 1 Triggering OFF")
-    GPIO.output(relay_one, GPIO.LOW)
-    time.sleep(1)
-    print("Relay 2 Triggering ON")
-    GPIO.output(relay_two, GPIO.HIGH)
-    time.sleep(3)
-    print("Relay 2 Triggering OFF")
-    GPIO.output(relay_two, GPIO.LOW)
-    time.sleep(1)
+        # Fetch updates from the remote
+        fetch_result = subprocess.run(
+            ["git", "fetch"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
 
-    print("Relay test complete")
+        if fetch_result.returncode != 0:
+            print("Error fetching updates:", fetch_result.stderr.strip())
+            return
 
-relay_test()
-GPIO.cleanup()
+        print("Fetched updates from remote.")
+
+        # Check if the local branch is behind the remote
+        status_result = subprocess.run(
+            ["git", "status", "-uno"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        if "Your branch is behind" in status_result.stdout:
+            print("Local branch is behind the remote. Pulling updates...")
+            
+            pull_result = subprocess.run(
+                ["git", "pull"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+
+            if pull_result.returncode == 0:
+                print("Successfully pulled updates:")
+                print(pull_result.stdout)
+            else:
+                print("Error pulling updates:", pull_result.stderr.strip())
+        else:
+            print("Local branch is up to date.")
+    except Exception as e:
+        print("An error occurred:", str(e))
+
+# Run the function
+check_and_update_remote()
