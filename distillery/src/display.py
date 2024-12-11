@@ -37,7 +37,7 @@ def clear_line(line):
     lcd.write_string(" " * 20)
 
 def show_text_on_line(line, text, center=True):
-    select_channel(bus, 2)
+    lcd = get_lcd()
 
     write = text
     if center:
