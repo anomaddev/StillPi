@@ -59,15 +59,15 @@ def test_relay(relay):
     time.sleep(1)
     
     try:
-        show_text_on_line(3, relay + " Test ON")
+        show_text_on_line(3, str(relay) + " Test ON")
         trigger_relay(relay, RelayState.ON)
         time.sleep(3)
     
-        show_text_on_line(3, relay + " Test OFF")
+        show_text_on_line(3, str(relay) + " Test OFF")
         trigger_relay(relay, RelayState.OFF)
         time.sleep(1)
 
-        show_text_on_line(3, relay + " Fail Test")
+        show_text_on_line(3, str(relay) + " Fail Test")
         trigger_relay(relay, RelayState.ON)
         time.sleep(1)
     except Exception as e:
