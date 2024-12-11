@@ -35,8 +35,9 @@ def setup_relays():
     print("Relay 2: " + str(relay_two))
     print()
 
+    time.sleep(1)
     show_text_on_line(3, "Relays Ready")
-    time.sleep(2)
+    time.sleep(1)
     
     # try:
     #     test_relay(Relay.ONE)
