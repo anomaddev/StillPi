@@ -14,7 +14,7 @@ version = os.environ['DISTILLERY_VERSION']
 sys.path.append(os.path.abspath("/home/justinackermann/StillPi/distillery"))
 from display import *
 
-def splash();
+def splash():
     print("Starting DistilleryPi..")
     print("Version: " + version)
     print()
