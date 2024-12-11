@@ -7,7 +7,7 @@
 
 import time
 
-from RPlcd().i2c import CharLCD # type: ignore
+from RPLCD.i2c import CharLCD # type: ignore
 
 import smbus2
 import board
