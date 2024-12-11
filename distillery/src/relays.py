@@ -43,6 +43,7 @@ def setup_relays():
         else:
             raise Exception("Relay 1 test failed")
 
+    time.sleep(2)
     try:
         test_relay(Relay.TWO)
     except Exception as e:
@@ -50,6 +51,10 @@ def setup_relays():
             print("Relay 2 test passed")
         else:
             raise Exception("Relay 2 test failed")
+        
+    time.sleep(1)
+    show_text_on_line(3, "Relays OK")
+    time.sleep(2)
 
 def sleep_relays():
     GPIO.cleanup()
@@ -71,7 +76,6 @@ def test_relay(relay):
 
         show_text_on_line(3, str(relay) + " Fail Test")
         trigger_relay(relay, RelayState.ON)
-        time.sleep(1)
     except Exception as e:
         raise Exception("FAILED SUCCESSFULLY")
 
