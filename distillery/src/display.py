@@ -24,131 +24,129 @@ bus = smbus2.SMBus(1)
 
 lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dotsize=8, backlight_enabled=True)
 
-def lcd():
-    select_channel(bus, 2)
-    return lcd
-
 def lcd_show_message(message):
-    lcd().clear() # Clear the screen
-    lcd().write_string(message)
+    lcd.clear() # Clear the screen
+    lcd.write_string(message)
 
 def clear_line(line):
-    lcd().cursor_pos = (line, 0)
-    lcd().write_string(" " * 20)
+    lcd.cursor_pos = (line, 0)
+    lcd.write_string(" " * 20)
 
 def show_text_on_line(line, text, center=True):
     write = text
     if center:
         write = text.center(20, " ")
 
-    lcd().cursor_pos = (line, 0)
-    lcd().write_string(write)
+    lcd.cursor_pos = (line, 0)
+    lcd.write_string(write)
 
 def start_screen(version):
-    lcd().clear() # Clear the screen
+    select_channel(bus, 2)
+    
+    lcd.clear() # Clear the screen
 
     # Display the welcome message
-    lcd().cursor_pos = (0, 4)
-    lcd().write_string("DistilleryPi")
-    lcd().cursor_pos = (1, 7)
-    lcd().write_string("v" + version)
-    lcd().cursor_pos = (3, 3)
-    lcd().write_string("Initializing..")
+    lcd.cursor_pos = (0, 4)
+    lcd.write_string("DistilleryPi")
+    lcd.cursor_pos = (1, 7)
+    lcd.write_string("v" + version)
+    lcd.cursor_pos = (3, 3)
+    lcd.write_string("Initializing..")
 
 def init_screen():
-    lcd().clear() # Clear the screen
+    lcd.clear() # Clear the screen
 
     # Display the target temperature
-    lcd().cursor_pos = (0, 0)
-    lcd().write_string("SET:  ---F")
+    lcd.cursor_pos = (0, 0)
+    lcd.write_string("SET:  ---F")
 
     # Display the heater1 status
-    lcd().cursor_pos = (0, 13)
-    lcd().write_string("H1: OFF")
+    lcd.cursor_pos = (0, 13)
+    lcd.write_string("H1: OFF")
 
     # Display the current temperature
-    lcd().cursor_pos = (1, 0)
-    lcd().write_string("REAL: ---F")
+    lcd.cursor_pos = (1, 0)
+    lcd.write_string("REAL: ---F")
 
     # Display the heater2 status
-    lcd().cursor_pos = (1, 13)
-    lcd().write_string("H2: OFF")
+    lcd.cursor_pos = (1, 13)
+    lcd.write_string("H2: OFF")
 
     # Display the status
-    lcd().cursor_pos = (3, 0)
-    lcd().write_string("STATUS: STABALIZING")
+    lcd.cursor_pos = (3, 0)
+    lcd.write_string("STATUS: STABALIZING")
 
 def update_screen(target_temp, current_temp, status, heater1, heater2):
-    lcd().clear() # Clear the screen
+    lcd.clear() # Clear the screen
 
     # Display the target temperature
-    lcd().cursor_pos = (0, 0)
-    lcd().write_string("TARGET:  ")
+    lcd.cursor_pos = (0, 0)
+    lcd.write_string("TARGET:  ")
     update_target(target_temp)
 
     # Display the heater1 status
-    lcd().cursor_pos = (0, 13)
-    lcd().write_string("H1: ")
+    lcd.cursor_pos = (0, 13)
+    lcd.write_string("H1: ")
     update_heater1(heater1)
 
     # Display the current temperature
-    lcd().cursor_pos = (1, 0)
-    lcd().write_string("CURRENT: ")
+    lcd.cursor_pos = (1, 0)
+    lcd.write_string("CURRENT: ")
     update_temp(current_temp)
 
     # Display the heater2 status
-    lcd().cursor_pos = (1, 13)
-    lcd().write_string("H2: ")
+    lcd.cursor_pos = (1, 13)
+    lcd.write_string("H2: ")
     update_heater2(heater2)
 
     # Display the status
-    lcd().cursor_pos = (3, 0)
-    lcd().write_string("STATUS: ")
+    lcd.cursor_pos = (3, 0)
+    lcd.write_string("STATUS: ")
     update_status(status)
 
 def update_target(target_temp):
     temp = str(target_temp) + "F"
-    lcd().cursor_pos = (0, 6)
+    lcd.cursor_pos = (0, 6)
 
     if len(temp) < 4:
-        lcd().write_string(" ")
+        lcd.write_string(" ")
 
-    lcd().write_string(temp)
+    lcd.write_string(temp)
 
 def update_temp(current_temp):
     temp = str(current_temp) + "F"
-    lcd().cursor_pos = (1, 6)
+    lcd.cursor_pos = (1, 6)
 
     if len(temp) < 4:
-        lcd().write_string(" ")
+        lcd.write_string(" ")
 
-    lcd().write_string(temp)
+    lcd.write_string(temp)
 
 def update_status(status):
-    lcd().cursor_pos = (3, 8)
-    lcd().write_string(status)
+    lcd.cursor_pos = (3, 8)
+    lcd.write_string(status)
 
     # Clear the remaining characters
     letters = len(status)
-    lcd().cursor_pos = (3, 8 + letters)
-    lcd().write_string(" " * (12 - letters))
+    lcd.cursor_pos = (3, 8 + letters)
+    lcd.write_string(" " * (12 - letters))
 
 def update_heater1(heater1):
-    lcd().cursor_pos = (0, 17)
-    lcd().write_string(heater1)
+    lcd.cursor_pos = (0, 17)
+    lcd.write_string(heater1)
 
     if heater1 == "ON":
-        lcd().cursor_pos = (0, 19)
-        lcd().write_string(" ")
+        lcd.cursor_pos = (0, 19)
+        lcd.write_string(" ")
 
 def update_heater2(heater2):
-    lcd().cursor_pos = (1, 17)
-    lcd().write_string(heater2)
+    lcd.cursor_pos = (1, 17)
+    lcd.write_string(heater2)
 
     # Clear the remaining characters if the heater is on
     if heater2 == "ON":
-        lcd().cursor_pos = (1, 19)
-        lcd().write_string(" ")
+        lcd.cursor_pos = (1, 19)
+        lcd.write_string(" ")
 
 def spoof_display():
     time.sleep(2)  # Delay for 2 seconds
