@@ -34,8 +34,8 @@ def core_function():
         
         # Setup the relays
         setup_relays()
-        show_text_on_line(3, "Relays Ready")
-        time.sleep(1)
+        show_text_on_line(3, "Heater SSRs Ready")
+        time.sleep(2.5)
 
         init_screen()
 
