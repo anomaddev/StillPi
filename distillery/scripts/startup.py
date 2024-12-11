@@ -21,7 +21,7 @@ print("Version: " + version)
 print()
 
 start_screen(version)
-time.sleep(1.5)
+time.sleep(2)
 
 # Check for updates
 def git_updates():
