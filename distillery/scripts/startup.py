@@ -111,7 +111,7 @@ if did_update:
     time.sleep(1.5)
 
     show_text_on_line(3, "Rebooting..")
-    time.sleep(1)
+    time.sleep(1.5)
     reboot_raspberry_pi()
 
 else:
