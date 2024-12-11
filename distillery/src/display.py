@@ -24,9 +24,6 @@ def show_text_on_line(line, text, center=True):
     if center:
         write = text.center(20, " ")
 
-    clear_line(line)
-    time.sleep(0.1)
-
     lcd.cursor_pos = (line, 0)
     lcd.write_string(write)
 
