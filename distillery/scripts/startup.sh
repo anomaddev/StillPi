@@ -1,5 +1,5 @@
 #! /bin/sh
-export DISTILLERY_VERSION="0.0.3"
+export DISTILLERY_VERSION="0.0.4"
 
 # Start the distillery
 cd /home/justinackermann/StillPi/distillery
