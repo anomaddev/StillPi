@@ -10,7 +10,7 @@ GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def button_press(button):
     print("Button pressed!")
     if GPIO.input(button) == GPIO.LOW:
-        print("Button pressed!")
+        print("Button depressed!")
     else:
         print("Button released!")
 
