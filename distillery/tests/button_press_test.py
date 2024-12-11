@@ -7,9 +7,9 @@ button_pin = 12
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def button_press(channel):
+def button_press(button):
     print("Button pressed!")
-    if GPIO.input(button_pin) == GPIO.low:
+    if GPIO.input(button) == GPIO.low:
         print("Button pressed!")
     else:
         print("Button released!")
