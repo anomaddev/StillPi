@@ -22,7 +22,7 @@ print("Version: " + version)
 print()
 
 start_screen(version)
-time.sleep(2)
+time.sleep(2.5)
 
 # Check for updates
 def git_updates():
@@ -100,7 +100,7 @@ def reboot_raspberry_pi():
         print("Rebooting Raspberry Pi...")
         command = "reboot"
         os.system('echo %s|sudo -S %s' % (sudo_pass, command))
-        
+
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while trying to reboot: {e}")
     except Exception as e:
