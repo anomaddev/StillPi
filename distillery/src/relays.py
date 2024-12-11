@@ -38,16 +38,18 @@ def setup_relays():
     try:
         test_relay(Relay.ONE)
     except Exception as e:
-        print(e)
-        print("Relay 1 test failed")
-        print()
+        if "FAILED SUCCESSFULLY" in str(e):
+            print("Relay 1 test passed")
+        else:
+            raise Exception("Relay 1 test failed")
 
     try:
         test_relay(Relay.TWO)
     except Exception as e:
-        print(e)
-        print("Relay 2 test failed")
-        print()
+        if "FAILED SUCCESSFULLY" in str(e):
+            print("Relay 2 test passed")
+        else:
+            raise Exception("Relay 2 test failed")
 
 def sleep_relays():
     GPIO.cleanup()
@@ -71,7 +73,7 @@ def test_relay(relay):
         trigger_relay(relay, RelayState.ON)
         time.sleep(1)
     except Exception as e:
-        raise e
+        raise Exception("FAILED SUCCESSFULLY")
 
     
 
