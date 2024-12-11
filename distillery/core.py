@@ -20,6 +20,7 @@ initial_load = True
 version = os.environ['DISTILLERY_VERSION']
 
 def core_function():
+    global initial_load
     print("Beginning core functionality..")
     print("Version: " + version)
     print()
