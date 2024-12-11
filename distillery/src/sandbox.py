@@ -16,7 +16,7 @@ import time
 
 from RPLCD.i2c import CharLCD # type: ignore
 
-from src.i2c_devices import *
+from i2c_devices import *
 
 bus = smbus2.SMBus(1)
 enable_channels(bus, [2, 7])
