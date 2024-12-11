@@ -1,7 +1,7 @@
 
 import RPi.GPIO as GPIO
 
-button_pin = 6
+button_pin = 26
 
 # Set GPIO mode
 GPIO.setmode(GPIO.BCM)
