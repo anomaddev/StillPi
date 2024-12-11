@@ -103,19 +103,20 @@ def reboot_raspberry_pi():
     except Exception as e:
         print(f"Unexpected error: {e}")
 
-if did_update:
+if not did_update:
+    print("No updates needed.")
+    time.sleep(1.5)
+    show_text_on_line(3, "Starting program..")
+    print("Starting distillery..")
+
+else:
     print("Did update software:", did_update)
     print("Initiating reboot..")
 
     show_text_on_line(3, "Software Updated")
     time.sleep(1.5)
-
     show_text_on_line(3, "Rebooting..")
     time.sleep(1.5)
+    
     reboot_raspberry_pi()
-
-else:
-    print("No updates needed.")
-    time.sleep(1.5)
-    show_text_on_line(3, "Starting..")
     
