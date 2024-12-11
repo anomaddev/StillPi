@@ -54,7 +54,7 @@ def core_function():
     stabilize_temp()
 
     # Await start button press
-    update_status("AWAITING START")
+    update_status("PRESS START")
     start_button_await()
     time.sleep(2)
 
