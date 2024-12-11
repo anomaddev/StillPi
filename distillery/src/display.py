@@ -33,6 +33,8 @@ def clear_line(line):
     lcd.write_string(" " * 20)
 
 def show_text_on_line(line, text, center=True):
+    select_channel(bus, 2)
+
     write = text
     if center:
         write = text.center(20, " ")
@@ -42,7 +44,7 @@ def show_text_on_line(line, text, center=True):
 
 def start_screen(version):
     select_channel(bus, 2)
-    
+
     lcd.clear() # Clear the screen
 
     # Display the welcome message
@@ -54,6 +56,7 @@ def start_screen(version):
     lcd.write_string("Initializing..")
 
 def init_screen():
+    select_channel(bus, 2)
     lcd.clear() # Clear the screen
 
     # Display the target temperature
@@ -105,6 +108,7 @@ def update_screen(target_temp, current_temp, status, heater1, heater2):
     update_status(status)
 
 def update_target(target_temp):
+    select_channel(bus, 2)
     temp = str(target_temp) + "F"
     lcd.cursor_pos = (0, 6)
 
@@ -114,6 +118,7 @@ def update_target(target_temp):
     lcd.write_string(temp)
 
 def update_temp(current_temp):
+    select_channel(bus, 2)
     temp = str(current_temp) + "F"
     lcd.cursor_pos = (1, 6)
 
@@ -123,6 +128,7 @@ def update_temp(current_temp):
     lcd.write_string(temp)
 
 def update_status(status):
+    select_channel(bus, 2)
     lcd.cursor_pos = (3, 8)
     lcd.write_string(status)
 
@@ -132,6 +138,7 @@ def update_status(status):
     lcd.write_string(" " * (12 - letters))
 
 def update_heater1(heater1):
+    select_channel(bus, 2)
     lcd.cursor_pos = (0, 17)
     lcd.write_string(heater1)
 
@@ -140,6 +147,7 @@ def update_heater1(heater1):
         lcd.write_string(" ")
 
 def update_heater2(heater2):
+    select_channel(bus, 2)
     lcd.cursor_pos = (1, 17)
     lcd.write_string(heater2)
 
