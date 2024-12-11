@@ -1,5 +1,5 @@
 
-from RPi.GPIO import GPIO
+import RPi.GPIO as GPIO
 
 button_pin = 12
 
