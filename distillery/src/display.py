@@ -70,8 +70,8 @@ def update_screen(target_temp, current_temp, status, heater1, heater2):
     update_target(target_temp)
 
     # Display the heater1 status
-    lcd.cursor_pos = (0, 14)
-    lcd.write_string("H1 ")
+    lcd.cursor_pos = (0, 13)
+    lcd.write_string("H1: ")
     update_heater1(heater1)
 
     # Display the current temperature
@@ -80,8 +80,8 @@ def update_screen(target_temp, current_temp, status, heater1, heater2):
     update_temp(current_temp)
 
     # Display the heater2 status
-    lcd.cursor_pos = (1, 14)
-    lcd.write_string("H2 ")
+    lcd.cursor_pos = (1, 13)
+    lcd.write_string("H2: ")
     update_heater2(heater2)
 
     # Display the status
@@ -120,7 +120,6 @@ def update_heater1(heater1):
     lcd.cursor_pos = (0, 17)
     lcd.write_string(heater1)
 
-    # Clear the remaining characters if the heater is on
     if heater1 == "ON":
         lcd.cursor_pos = (0, 19)
         lcd.write_string(" ")

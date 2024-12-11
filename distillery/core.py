@@ -14,11 +14,20 @@ import os
 import time
 import sys
 
+from enum import Enum
 from src.relays import *
 from src.display import *
 from src.interface import *
 
 version = os.environ['DISTILLERY_VERSION']
+class ControllerState(Enum):
+    IDLE = 0
+    HEATING = 1
+    COOLING = 2
+    COMPLETE = 3
+    ERROR = 4
+
+state = ControllerState.IDLE
 
 def core_function():
     print("Beginning core functionality..")
@@ -45,6 +54,7 @@ def core_function():
     stabilize_temp()
 
     # Await start button press
+    update_status("AWAITING START")
     start_button_await()
     time.sleep(2)
 
@@ -61,4 +71,10 @@ def stabilize_temp():
 def program_loop():
     print("Starting program loop..")
     print()
+    
+    global state
+    state = ControllerState.HEATING
     update_status("HEATING")
+    update_heater1("ON")
+    update_heater2("ON")
+        
