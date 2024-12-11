@@ -2,6 +2,6 @@
 export DISTILLERY_VERSION="0.0.3"
 
 # Start the distillery
-cd ~/StillPi/distillery
+cd /home/justinackermann/StillPi/distillery
 python3 startup.py
 
