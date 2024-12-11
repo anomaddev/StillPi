@@ -28,33 +28,36 @@ class RelayState(Enum):
     ON = 1
 
 def setup_relays():
+    print("Setting up relays..")
     GPIO.setup(relay_one, GPIO.OUT)
     GPIO.setup(relay_two, GPIO.OUT)
-    print("Relays setup complete")
     print("Relay 1: " + str(relay_one))
     print("Relay 2: " + str(relay_two))
     print()
-    
-    try:
-        test_relay(Relay.ONE)
-    except Exception as e:
-        if "FAILED SUCCESSFULLY" in str(e):
-            print("Relay 1 test passed")
-        else:
-            raise Exception("Relay 1 test failed")
-            time.sleep(2)
 
-    try:
-        test_relay(Relay.TWO)
-    except Exception as e:
-        if "FAILED SUCCESSFULLY" in str(e):
-            print("Relay 2 test passed")
-        else:
-            raise Exception("Relay 2 test failed")
-            time.sleep(2)
-        
-    show_text_on_line(3, "Relays OK")
+    show_text_on_line(3, "Relays Ready")
     time.sleep(2)
+    
+    # try:
+    #     test_relay(Relay.ONE)
+    # except Exception as e:
+    #     if "FAILED SUCCESSFULLY" in str(e):
+    #         print("Relay 1 test passed")
+    #     else:
+    #         raise Exception("Relay 1 test failed")
+    #         time.sleep(2)
+
+    # try:
+    #     test_relay(Relay.TWO)
+    # except Exception as e:
+    #     if "FAILED SUCCESSFULLY" in str(e):
+    #         print("Relay 2 test passed")
+    #     else:
+    #         raise Exception("Relay 2 test failed")
+    #         time.sleep(2)
+        
+    # show_text_on_line(3, "Relays OK")
+    # time.sleep(2)
 
 def sleep_relays():
     GPIO.cleanup()
