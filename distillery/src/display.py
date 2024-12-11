@@ -27,6 +27,7 @@ lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1, cols=20, rows=4, dot
 def lcd():
     select_channel(bus, 2)
     return lcd
+
 def lcd_show_message(message):
     lcd().clear() # Clear the screen
     lcd().write_string(message)
