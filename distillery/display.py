@@ -14,7 +14,7 @@ def lcd_show_message(message):
     lcd.clear() # Clear the screen
     lcd.write_string(message)
 
-def show_text_on_line(line, text, center=False):
+def show_text_on_line(line, text, center=True):
     write = text
     if center:
         write = text.center(20)

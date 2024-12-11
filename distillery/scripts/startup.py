@@ -87,4 +87,35 @@ def git_updates():
 show_text_on_line(3, "Updating..", True)
 did_update = git_updates()
 
-print("Did update:", did_update)
+# Reboot the Raspberry Pi
+def reboot_raspberry_pi():
+    try:
+        # Ensure the script is run with sudo or root privileges
+        if os.geteuid() != 0:
+            print("This script requires root privileges. Please run with sudo.")
+            return
+        
+        # Use subprocess to call the reboot command
+        print("Rebooting Raspberry Pi...")
+        subprocess.run(["sudo", "reboot"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred while trying to reboot: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+if did_update:
+    print("Did update software:", did_update)
+    print("Initiating reboot..")
+
+    show_text_on_line(3, "Software Updated")
+    time.sleep(1.5)
+
+    show_text_on_line(3, "Rebooting..")
+    time.sleep(1)
+    reboot_raspberry_pi()
+
+else:
+    print("No updates needed.")
+    time.sleep(1.5)
+    show_text_on_line(3, "Starting..")
+    
