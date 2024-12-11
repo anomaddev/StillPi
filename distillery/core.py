@@ -20,12 +20,6 @@ from src.display import *
 from src.interface import *
 
 version = os.environ['DISTILLERY_VERSION']
-class ControllerState(Enum):
-    IDLE = 0
-    HEATING = 1
-    COOLING = 2
-    COMPLETE = 3
-    ERROR = 4
 
 state = ControllerState.IDLE
 
@@ -62,8 +56,6 @@ def core_function():
     program_loop()
 
     GPIO.cleanup()
-        
-        
 
 def stabilize_temp():
     print("Stabilizing temperature..")
@@ -93,3 +85,10 @@ def program_loop():
     while state != ControllerState.COMPLETE:
         # Check the temperature
         time.sleep(0.2)
+
+class ControllerState(Enum):
+    IDLE = 0
+    HEATING = 1
+    COOLING = 2
+    COMPLETE = 3
+    ERROR = 4
