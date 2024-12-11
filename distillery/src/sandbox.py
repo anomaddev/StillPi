@@ -31,7 +31,9 @@ def select_channel(bus, channel):
         raise ValueError("Channel must be in range 0-7")
     
 bus = smbus2.SMBus(1)
+
 select_channel(bus, 2)
+select_channel(bus, 7)
 
 # for channel in range(8):
 #     if tca[channel].try_lock():
