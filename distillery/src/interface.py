@@ -36,10 +36,11 @@ def setup_interface():
     GPIO.add_event_detect(start_button, GPIO.BOTH, callback=start_pressed, bouncetime=10)
 
 def start_button_await():
+    print("Awaiting start button press..")
     while not start_toggle:
         pass
 
-    print("start button pressed")
+    print("Start button pressed")
     GPIO.remove_event_detect(start_button)
     return
 

@@ -46,6 +46,10 @@ def core_function():
 
     # Await start button press
     start_button_await()
+    time.sleep(2)
+
+    # Start the program loop
+    program_loop()
         
         
 
@@ -57,3 +61,4 @@ def stabilize_temp():
 def program_loop():
     print("Starting program loop..")
     print()
+    update_status("HEATING")
