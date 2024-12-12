@@ -65,9 +65,13 @@ class ControllerState(Enum):
     ERROR = 5
 
 def program_loop():
-    update_status("IDLE")
     state = ControllerState.IDLE
-    time.sleep(10)
+    update_status(str(state).upper())
+    time.sleep(1)
+
+    while state != ControllerState.COMPLETE:
+        print("Main Loop")
+        print("State: " + str(state))
 
 def stabilize_temp():
     update_status("STABALIZING")
