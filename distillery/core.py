@@ -23,45 +23,46 @@ from src.temp import *
 version = os.environ['DISTILLERY_VERSION']
 
 def core_function():
-    print("Beginning core functionality..")
+    print("Beginning core application")
     print("Version: " + version)
+    print("---------------------------------")
     print()
 
     # Set GPIO mode
     GPIO.setmode(GPIO.BCM)
-    
+
+    # Setup the interface & buttons
+    setup_interface()
+
     # Setup the relays
     setup_relays()
     show_text_on_line(3, "Heater SSRs Ready")
-    time.sleep(2.5)
-
-    setup_interface()
-    show_text_on_line(3, "Buttons Active")
-    time.sleep(2.5)
+    time.sleep(2)
 
     # Initialize the screen
     init_screen()
-    time.sleep(2.5)
+    time.sleep(2)
 
     # Setup the temperature sensor
     stabilize_temp()
 
-    # Await start button press
-    update_status("PRESS START")
-    start_button_await()
-    time.sleep(0.5)
+    # # Await start button press
+    # update_status("PRESS START")
+    # start_button_await()
+    # time.sleep(0.5)
 
-    # Start the program loop
-    program_loop()
+    # # Start the program loop
+    # program_loop()
 
     GPIO.cleanup()
 
 class ControllerState(Enum):
     IDLE = 0
-    HEATING = 1
-    COOLING = 2
-    COMPLETE = 3
-    ERROR = 4
+    INITIAL_HEAT = 1
+    MAINTAIN_HEAT = 2
+    COOLING = 3
+    COMPLETE = 4
+    ERROR = 5
 
 state = ControllerState.IDLE
 

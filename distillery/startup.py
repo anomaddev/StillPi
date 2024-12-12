@@ -86,7 +86,7 @@ def git_updates():
         raise e
     
 # Check for updates
-show_text_on_line(3, "Updating..", True)
+show_text_on_line(3, "Updating Data", True)
 did_update = git_updates()
 
 # Reboot the Raspberry Pi
@@ -112,7 +112,7 @@ if not did_update:
     time.sleep(2)
     show_text_on_line(3, "No Updates Needed")
     time.sleep(2)
-    show_text_on_line(3, "Starting program..")
+    show_text_on_line(3, "Continuing Startup")
     
     time.sleep(2)
     core_function()
@@ -123,7 +123,7 @@ else:
 
     show_text_on_line(3, "Software Updated")
     time.sleep(2)
-    show_text_on_line(3, "Rebooting..")
+    show_text_on_line(3, "Rebooting")
     time.sleep(2)
     
     reboot_raspberry_pi()
