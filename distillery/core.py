@@ -51,8 +51,8 @@ def core_function():
     # start_button_await()
     # time.sleep(0.5)
 
-    # # Start the program loop
-    # program_loop()
+    # Start the program loop
+    program_loop()
 
     GPIO.cleanup()
 
@@ -64,17 +64,9 @@ class ControllerState(Enum):
     COMPLETE = 4
     ERROR = 5
 
-state = ControllerState.IDLE
-
 def program_loop():
-    print("Starting program loop..")
+    state = ControllerState.IDLE
     print()
-    
-    global state
-
-    # Start heating
-    state = ControllerState.HEATING
-    heat_to_target(160)
 
 def stabilize_temp():
     update_status("STABALIZING")
