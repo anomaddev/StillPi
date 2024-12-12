@@ -70,7 +70,7 @@ def stabilize_temp():
     t1 = Thread(target=temp_sensor_loop)
     t1.start()
 
-    time.sleep(2)
+    time.sleep(5)
     update_temp(str(int(current_temp_f)) + "F")
     
 

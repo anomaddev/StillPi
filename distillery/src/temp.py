@@ -10,6 +10,8 @@ import board
 import digitalio
 import adafruit_max31865
 
+from src.display import *
+
 spi = board.SPI()
 cs = digitalio.DigitalInOut(board.D5)  # Chip select of the MAX31865 board.
 sensor = adafruit_max31865.MAX31865(spi, cs)
@@ -28,4 +30,5 @@ def temp_sensor_loop():
         current_temp_f = sensor.temperature * 9 / 5 + 32
 
         print('Temperature: {0:0.2f} F'.format(current_temp_f))
+        update_temp(int(current_temp_f))
         time.sleep(1) # Sleep for 1 second
