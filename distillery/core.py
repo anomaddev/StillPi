@@ -56,6 +56,7 @@ def core_function():
     program_loop()
 
     GPIO.cleanup()
+
 class ControllerState(Enum):
     IDLE = 0
     HEATING = 1
@@ -70,11 +71,15 @@ def program_loop():
     print()
     
     global state
-    global current_temp_f
 
     # Start heating
     state = ControllerState.HEATING
+    heat_to_target(160)
+
+
+def heat_to_target(target_temp):
     update_status("HEATING")
+    update_target(target_temp)
 
     # Turn on the heaters
     trigger_relay(Relay.ONE, RelayState.ON)
@@ -85,21 +90,12 @@ def program_loop():
 
     time.sleep(5) # Let the heaters warm up
 
-    update_target(target_temp)
-    while state != ControllerState.COMPLETE:
-        # Check the temperature
-        print('Current Temp: {0:0.2f} F'.format(current_temp_f))
+    current_temp = get_temp()
+    update_temp(int(current_temp))
 
-        if current_temp_f >= (target_temp + 3):
-            state = ControllerState.COMPLETE
-            update_status("HEATING")
+    while current_temp < target_temp:
+        current_temp = get_temp()
+        update_temp(int(current_temp))
 
-            # Turn on the heaters
-            trigger_relay(Relay.ONE, RelayState.OFF)
-            trigger_relay(Relay.TWO, RelayState.OFF)
-
-            update_heater1("OFF")
-            update_heater2("OFF")
-            break
-
+        print('Current Temp: {0:0.2f} F'.format(current_temp))
         time.sleep(0.2)
