@@ -47,8 +47,8 @@ def core_function():
     stabilize_temp()
 
     # # Await start button press
-    # update_status("PRESS START")
-    # start_button_await()
+    update_status("PRESS START")
+    start_button_await()
     # time.sleep(0.5)
 
     # Start the program loop
@@ -65,45 +65,42 @@ class ControllerState(Enum):
     ERROR = 5
 
 def program_loop():
+    update_status("IDLE")
     state = ControllerState.IDLE
-    print()
+    time.sleep(10)
 
 def stabilize_temp():
     update_status("STABALIZING")
 
     counter = 10
-    current_temp = get_temp()
-    update_temp(int(current_temp))
-    time.sleep(1)
-
     while counter > 0:
         counter -= 1
         current_temp = get_temp()
         update_temp(int(current_temp))
 
         print('Current Temp: {0:0.2f} F'.format(current_temp))
-        time.sleep(1)
+        time.sleep(0.5)
 
 
-def heat_to_target(target_temp):
-    update_status("HEATING")
-    update_target(target_temp)
+# def heat_to_target(target_temp):
+#     update_status("HEATING")
+#     update_target(target_temp)
 
-    # Turn on the heaters
-    trigger_relay(Relay.ONE, RelayState.ON)
-    trigger_relay(Relay.TWO, RelayState.ON)
+#     # Turn on the heaters
+#     trigger_relay(Relay.ONE, RelayState.ON)
+#     trigger_relay(Relay.TWO, RelayState.ON)
 
-    update_heater1("ON")
-    update_heater2("ON")
+#     update_heater1("ON")
+#     update_heater2("ON")
 
-    time.sleep(5) # Let the heaters warm up
+#     time.sleep(5) # Let the heaters warm up
 
-    current_temp = get_temp()
-    update_temp(int(current_temp))
+#     current_temp = get_temp()
+#     update_temp(int(current_temp))
 
-    while current_temp < target_temp:
-        current_temp = get_temp()
-        update_temp(int(current_temp))
+#     while current_temp < target_temp:
+#         current_temp = get_temp()
+#         update_temp(int(current_temp))
 
-        print('Current Temp: {0:0.2f} F'.format(current_temp))
-        time.sleep(0.2)
+#         print('Current Temp: {0:0.2f} F'.format(current_temp))
+#         time.sleep(0.2)
