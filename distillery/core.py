@@ -46,6 +46,8 @@ def core_function():
     # Setup the temperature sensor
     stabilize_temp()
 
+    # TODO: Add target temp input
+
     # # Await start button press
     update_status("PRESS START")
     start_button_await()
@@ -66,12 +68,35 @@ class ControllerState(Enum):
 
 def program_loop():
     state = ControllerState.IDLE
-    update_status(str(state).upper())
+    update_status("IDLE")
+
+    startup = True
+
     time.sleep(1)
 
     while state != ControllerState.COMPLETE:
         print("Main Loop")
         print("State: " + str(state))
+
+        match state:
+            case ControllerState.IDLE:
+                state = ControllerState.INITIAL_HEAT
+                break
+
+            case ControllerState.INITIAL_HEAT:
+                state = ControllerState.MAINTAIN_HEAT
+                break
+
+            case ControllerState.MAINTAIN_HEAT:
+                state = ControllerState.COMPLETE
+                break
+
+            case ControllerState.COMPLETE:
+                break
+
+            case _:
+                state = ControllerState.ERROR
+                break
 
 def stabilize_temp():
     update_status("STABALIZING")
