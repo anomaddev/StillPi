@@ -18,6 +18,7 @@ from enum import Enum
 from src.relays import *
 from src.display import *
 from src.interface import *
+from src.temp import *
 
 version = os.environ['DISTILLERY_VERSION']
 
@@ -65,8 +66,14 @@ state = ControllerState.IDLE
 
 def stabilize_temp():
     print("Stabilizing temperature..")
-    print()
-    update_temp("72")
+    
+    t1 = Thread(target=temp_sensor_loop)
+    t1.start()
+
+    time.sleep(2)
+    update_temp(str(int(current_temp_f)) + "F")
+    
+
 
 def program_loop():
     print("Starting program loop..")
