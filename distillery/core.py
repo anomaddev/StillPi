@@ -76,7 +76,7 @@ def stabilize_temp():
     update_temp(int(current_temp))
     time.sleep(1)
 
-    while counter < 0:
+    while counter > 0:
         counter -= 1
         current_temp = get_temp()
         update_temp(int(current_temp))
