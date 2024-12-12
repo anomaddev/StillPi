@@ -87,4 +87,18 @@ def program_loop():
     update_target(180)
     while state != ControllerState.COMPLETE:
         # Check the temperature
+        print('Current Temp: {0:0.2f} F'.format(current_temp_f))
+
+        if current_temp_f >= (target_temp + 3):
+            state = ControllerState.COMPLETE
+            update_status("HEATING")
+
+            # Turn on the heaters
+            trigger_relay(Relay.ONE, RelayState.OFF)
+            trigger_relay(Relay.TWO, RelayState.OFF)
+
+            update_heater1("OFF")
+            update_heater2("OFF")
+            break
+
         time.sleep(0.2)

@@ -21,6 +21,8 @@ loop_active = True
 current_temp_c = 0
 current_temp_f = 0
 
+target_temp = 180
+
 def temp_sensor_loop():
     global current_temp_c
     global current_temp_f
@@ -29,6 +31,6 @@ def temp_sensor_loop():
         current_temp_c = sensor.temperature
         current_temp_f = sensor.temperature * 9 / 5 + 32
 
-        print('Temperature: {0:0.2f} F'.format(current_temp_f))
+        # print('Temperature: {0:0.2f} F'.format(current_temp_f))
         update_temp(int(current_temp_f))
         time.sleep(1) # Sleep for 1 second
