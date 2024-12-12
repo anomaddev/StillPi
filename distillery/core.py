@@ -43,13 +43,14 @@ def core_function():
     init_screen()
     time.sleep(2.5)
 
-    # Get initial temperature reading
-    stabilize_temp()
+    # Setup the temperature sensor
+    t1 = Thread(target=temp_sensor_loop)
+    t1.start()
 
     # Await start button press
     update_status("PRESS START")
     start_button_await()
-    time.sleep(2)
+    time.sleep(0.5)
 
     # Start the program loop
     program_loop()
@@ -63,17 +64,6 @@ class ControllerState(Enum):
     ERROR = 4
 
 state = ControllerState.IDLE
-
-def stabilize_temp():
-    print("Stabilizing temperature..")
-    
-    t1 = Thread(target=temp_sensor_loop)
-    t1.start()
-
-    time.sleep(5)
-    update_temp(str(int(current_temp_f)) + "F")
-    
-
 
 def program_loop():
     print("Starting program loop..")
