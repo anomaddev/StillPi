@@ -44,8 +44,7 @@ def core_function():
     time.sleep(2.5)
 
     # Setup the temperature sensor
-    t1 = Thread(target=temp_sensor_loop)
-    t1.start()
+    stabilize_temp()
 
     # Await start button press
     update_status("PRESS START")
@@ -75,6 +74,22 @@ def program_loop():
     # Start heating
     state = ControllerState.HEATING
     heat_to_target(160)
+
+def stabilize_temp():
+    update_status("STABALIZING")
+
+    counter = 10
+    current_temp = get_temp()
+    update_temp(int(current_temp))
+    time.sleep(1)
+
+    while counter < 0:
+        counter -= 1
+        current_temp = get_temp()
+        update_temp(int(current_temp))
+
+        print('Current Temp: {0:0.2f} F'.format(current_temp))
+        time.sleep(1)
 
 
 def heat_to_target(target_temp):
