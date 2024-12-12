@@ -70,6 +70,7 @@ def program_loop():
     print()
     
     global state
+    global current_temp_f
 
     # Start heating
     state = ControllerState.HEATING
@@ -84,7 +85,7 @@ def program_loop():
 
     time.sleep(5) # Let the heaters warm up
 
-    update_target(180)
+    update_target(target_temp)
     while state != ControllerState.COMPLETE:
         # Check the temperature
         print('Current Temp: {0:0.2f} F'.format(current_temp_f))
