@@ -32,12 +32,6 @@ def core_function():
     print("----------------------------")
     print()
 
-    # Set GPIO mode
-    GPIO.setmode(GPIO.BCM)
-
-    # Setup the interface & buttons
-    setup_interface()
-
     # Setup the relays
     setup_relays()
     show_text_on_line(3, "Heater SSRs Ready")
