@@ -14,12 +14,12 @@ from src.relays import *
 current_temp = get_temp()
 target_temp = 0
 
-def inital_heat(target):
+def inital_heat():
     print("Starting initial heat...")
     global current_temp
     global target_temp
 
-    target_temp = target
+    target_temp = read_target_temp()
     current_temp = get_temp()
     update_temp(int(current_temp))
     update_status("HEATING")
@@ -34,16 +34,19 @@ def inital_heat(target):
     time.sleep(5) # Let the heaters warm up
 
     print("Starting heat loop...")
+    print("Target Temp: " + str(target_temp))
     iterator = 0
     while current_temp < (target_temp + 3):
         iterator += 1
+        target_temp = read_target_temp()
         current_temp = get_temp()
-        update_temp(int(current_temp))
 
         # Only print every 10th iteration
         if iterator % 10 == 0:
             print("Current Temp: " + str(current_temp))
 
+        update_target(int(target_temp))
+        update_temp(int(current_temp))
         time.sleep(0.1)
 
     print("Initial heat complete!")
