@@ -48,7 +48,8 @@ def core_function():
     update_target(int(read_target_temp()))
 
     # # Await start button press
-    update_status("PRESS START")
+    update_status("PRESS START") 
+    print("Press the start button to begin")
     start_button.wait_for_press()
     # time.sleep(0.5)
 
