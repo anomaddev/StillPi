@@ -85,7 +85,7 @@ def update_status(status):
 
     # Clear the remaining characters
     letters = len(status)
-    lcd.cursor_pos = (3, 8 + letters)
+    lcd.cursor_pos = (0, 8 + letters)
     lcd.write_string(" " * (12 - letters))
 
 def update_heater1(heater1):
