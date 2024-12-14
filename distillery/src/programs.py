@@ -52,6 +52,8 @@ def maintain_heat():
     global target_temp
     print("Maintaining temperature...")
     update_status("MAINTAINING")
+    
+    time.sleep(3) # Let the system stabilize
 
     print("Target Temp: " + str(target_temp))
     last_trigger = 0
