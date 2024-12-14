@@ -13,8 +13,8 @@ from enum import Enum
 SSR1 = LED(23)
 SSR2 = LED(24)
 
-blink_relay1 = LED(16)
-blink_relay2 = LED(20)
+blink_relay1 = LED(20)
+blink_relay2 = LED(16)
 
 class Relay(Enum):
     ONE = SSR1
