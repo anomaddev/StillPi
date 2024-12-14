@@ -10,6 +10,7 @@ import time
 import RPi.GPIO as GPIO
 
 from core import *
+from src.relays import *
 
 start_button = 26
 stop_button = 19

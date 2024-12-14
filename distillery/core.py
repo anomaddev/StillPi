@@ -40,6 +40,8 @@ def core_function():
     show_text_on_line(3, "Heater SSRs Ready")
     time.sleep(2)
 
+    test_blink_relay()
+
     # Initialize the screen
     init_screen()
     time.sleep(2)
@@ -116,27 +118,3 @@ def stabilize_temp():
 
         print('Current Temp: {0:0.2f} F'.format(current_temp))
         time.sleep(0.5)
-
-
-# def heat_to_target(target_temp):
-#     update_status("HEATING")
-#     update_target(target_temp)
-
-#     # Turn on the heaters
-#     trigger_relay(Relay.ONE, RelayState.ON)
-#     trigger_relay(Relay.TWO, RelayState.ON)
-
-#     update_heater1("ON")
-#     update_heater2("ON")
-
-#     time.sleep(5) # Let the heaters warm up
-
-#     current_temp = get_temp()
-#     update_temp(int(current_temp))
-
-#     while current_temp < target_temp:
-#         current_temp = get_temp()
-#         update_temp(int(current_temp))
-
-#         print('Current Temp: {0:0.2f} F'.format(current_temp))
-#         time.sleep(0.2)

@@ -10,12 +10,15 @@ import time
 
 from enum import Enum
 
-relay_one = 23
-relay_two = 24
+SSR1 = 23
+SSR2 = 24
+
+blink_relay1 = 16
+blink_relay2 = 20
 
 class Relay(Enum):
-    ONE = relay_one
-    TWO = relay_two
+    ONE = SSR1
+    TWO = SSR2
 
 last_trigger = {
     Relay.ONE: 0,
@@ -28,10 +31,14 @@ class RelayState(Enum):
 
 def setup_relays():
     print("Setting up relays..")
-    GPIO.setup(relay_one, GPIO.OUT)
-    GPIO.setup(relay_two, GPIO.OUT)
-    print("Relay 1: " + str(relay_one))
-    print("Relay 2: " + str(relay_two))
+    GPIO.setup(SSR1, GPIO.OUT)
+    GPIO.setup(SSR2, GPIO.OUT)
+    GPIO.setup(blink_relay1, GPIO.OUT)
+    GPIO.setup(blink_relay2, GPIO.OUT)
+    print("Solid State Relay 1: " + str(SSR1))
+    print("Solid State Relay 2: " + str(SSR2))
+    print("Blink Relay 1: " + str(blink_relay1))
+    print("Blink Relay 2: " + str(blink_relay2))
     print()
     
     # try:
@@ -65,17 +72,33 @@ def test_relay(relay):
     time.sleep(1)
     
     try:
-        trigger_relay(relay, RelayState.ON)
+        trigger_SSR_relay(relay, RelayState.ON)
         time.sleep(3)
     
-        trigger_relay(relay, RelayState.OFF)
+        trigger_SSR_relay(relay, RelayState.OFF)
         time.sleep(1)
 
-        trigger_relay(relay, RelayState.ON)
+        trigger_SSR_relay(relay, RelayState.ON)
     except Exception as e:
         raise Exception("FAILED SUCCESSFULLY")
+    
+def test_blink_relay():
+    print("Blink Relay test starting..")
+    time.sleep(1)
 
-def trigger_relay(relay, state):
+    trigger_blink_relay(blink_relay1, RelayState.ON)
+    time.sleep(3)
+
+    trigger_blink_relay(blink_relay1, RelayState.OFF)
+    time.sleep(1)
+
+    trigger_blink_relay(blink_relay2, RelayState.ON)
+    time.sleep(3)
+
+    trigger_blink_relay(blink_relay2, RelayState.OFF)
+    time.sleep(1)
+
+def trigger_SSR_relay(relay, state):
     last = last_trigger[relay]
 
     if time.time() - last < 2:
@@ -84,3 +107,7 @@ def trigger_relay(relay, state):
         last_trigger[relay] = time.time()
         GPIO.output(relay.value, state.value)
         print("Relay " + str(relay.value) + " triggered: " + str(state))
+
+def trigger_blink_relay(relay, state):
+    GPIO.output(relay, state.value)
+    print("Blink Relay " + str(relay) + " triggered: " + str(state))

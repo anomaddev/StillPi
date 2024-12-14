@@ -92,16 +92,16 @@ def maintain_heat():
 
 def heaters_on():
     print("Turning on both heaters...")
-    trigger_relay(Relay.ONE, RelayState.ON)
-    trigger_relay(Relay.TWO, RelayState.ON)
+    trigger_SSR_relay(Relay.ONE, RelayState.ON)
+    trigger_SSR_relay(Relay.TWO, RelayState.ON)
 
     update_heater1("ON")
     update_heater2("ON")
 
 def heaters_off():
     print("Turning off both heaters...")
-    trigger_relay(Relay.ONE, RelayState.OFF)
-    trigger_relay(Relay.TWO, RelayState.OFF)
+    trigger_SSR_relay(Relay.ONE, RelayState.OFF)
+    trigger_SSR_relay(Relay.TWO, RelayState.OFF)
 
     update_heater1("OFF")
     update_heater2("OFF")
