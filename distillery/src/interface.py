@@ -49,7 +49,7 @@ def setup_interface():
     GPIO.setup(start_button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(stop_button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-    GPIO.add_event_detect(start_button, GPIO.ZERO, callback=start_pressed, bouncetime=10)
+    GPIO.add_event_detect(start_button, GPIO.BOTH, callback=start_pressed, bouncetime=10)
     GPIO.add_event_detect(stop_button, GPIO.BOTH, callback=stop_pressed, bouncetime=10)
 
 def start_button_await():
