@@ -55,8 +55,6 @@ def core_function():
     # Start the program loop
     program_loop()
 
-    GPIO.cleanup()
-
 class ControllerState(Enum):
     IDLE = 0
     INITIAL_HEAT = 1

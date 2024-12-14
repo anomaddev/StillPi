@@ -116,7 +116,7 @@ def trigger_SSR_relay(relay, state):
 
 def trigger_blink_relay(relay, state):
     if state == RelayState.ON:
-        relay.blink(on_time=0.5, off_time=0.5)
+        relay.on()
     else:
         relay.off()
 
