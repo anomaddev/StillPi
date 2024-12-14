@@ -24,12 +24,12 @@ from src.programs import *
 version = os.environ['DISTILLERY_VERSION']
 
 def core_function():
+    print()
+    print("----------------------------")
     print("Beginning core application")
     print("Version: " + version)
-    print("---------------------------------")
+    print("----------------------------")
     print()
-
-    GPIO.cleanup()
 
     # Set GPIO mode
     GPIO.setmode(GPIO.BCM)
