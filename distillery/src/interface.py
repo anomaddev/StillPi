@@ -55,6 +55,8 @@ def setup_interface():
 def start_button_await():
     print()
     print("Awaiting start button press...")
+    trigger_blink_relay(blink_relay1, RelayState.ON)
+    
     while not start_toggle:
         pass
 
