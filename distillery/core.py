@@ -55,6 +55,7 @@ def core_function():
     trigger_blink_relay(blink_relay1, RelayState.OFF)
     start_button.wait_for_press()
     trigger_blink_relay(blink_relay1, RelayState.ON)
+    trigger_blink_relay(blink_relay2, RelayState.OFF)
     # time.sleep(0.5)
 
     # Start the program loop

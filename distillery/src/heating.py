@@ -127,5 +127,5 @@ def rate_of_change():
     print("Average Temp: " + str(avg))
 
     last_second = temp_log[-10:]
-    print(last_second)
+    print(map(lambda x: x.temp, last_second))
     
