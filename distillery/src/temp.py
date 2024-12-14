@@ -29,3 +29,7 @@ def temp_update_loop():
     while True:
         update_temp(int(get_temp()))
         time.sleep(1)
+
+def read_target_temp():
+    # TODO: Implement target temp input
+    return 180

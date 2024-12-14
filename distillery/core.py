@@ -19,6 +19,7 @@ from src.relays import *
 from src.display import *
 from src.interface import *
 from src.temp import *
+from src.programs import *
 
 version = os.environ['DISTILLERY_VERSION']
 
@@ -47,6 +48,7 @@ def core_function():
     stabilize_temp()
 
     # TODO: Add target temp input
+    update_target(int(read_target_temp()))
 
     # # Await start button press
     update_status("PRESS START")
@@ -75,17 +77,21 @@ def program_loop():
     time.sleep(1)
 
     while state != ControllerState.COMPLETE:
-        print("Main Loop")
-        print("State: " + str(state))
+        if startup:
+            print()
+            print("Main Loop")
+            print("State: " + str(state))
 
         match state:
             case ControllerState.IDLE:
-                state = ControllerState.INITIAL_HEAT
-                break
+                if startup:
+                    startup = False
+                    state = ControllerState.INITIAL_HEAT
+
+                # TODO: Idle state
 
             case ControllerState.INITIAL_HEAT:
-                state = ControllerState.MAINTAIN_HEAT
-                break
+                inital_heat()
 
             case ControllerState.MAINTAIN_HEAT:
                 state = ControllerState.COMPLETE
