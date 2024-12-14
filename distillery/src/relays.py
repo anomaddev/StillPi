@@ -45,8 +45,8 @@ def setup_relays():
     print("Setting initial relay states..")
     trigger_SSR_relay(Relay.ONE, RelayState.OFF)
     trigger_SSR_relay(Relay.TWO, RelayState.OFF)
-    trigger_blink_relay(blink_relay1, RelayState.OFF)
-    trigger_blink_relay(blink_relay2, RelayState.OFF)
+    trigger_blink_relay(blink_relay1, RelayState.ON)
+    trigger_blink_relay(blink_relay2, RelayState.ON)
     print()
     
     # try:
