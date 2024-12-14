@@ -7,19 +7,21 @@
 #
 #
 
-from threading import Thread
-import RPi.GPIO as GPIO
-
 import os
 import time
 import sys
 
+from threading import Thread
+from gpiozero import Button
 from enum import Enum
 from src.relays import *
 from src.display import *
 from src.interface import *
 from src.temp import *
 from src.programs import *
+
+start_button = Button(26)
+stop_button = Button(13)
 
 version = os.environ['DISTILLERY_VERSION']
 
@@ -54,7 +56,7 @@ def core_function():
 
     # # Await start button press
     update_status("PRESS START")
-    start_button_await()
+    start_button.wait_for_press()
     # time.sleep(0.5)
 
     # Start the program loop

@@ -5,16 +5,16 @@
 #
 #
 
-import RPi.GPIO as GPIO
 import time
 
+from gpiozero import LED
 from enum import Enum
 
-SSR1 = 23
-SSR2 = 24
+SSR1 = LED(23)
+SSR2 = LED(24)
 
-blink_relay1 = 16
-blink_relay2 = 20
+blink_relay1 = LED(16)
+blink_relay2 = LED(20)
 
 class Relay(Enum):
     ONE = SSR1
@@ -31,10 +31,6 @@ class RelayState(Enum):
 
 def setup_relays():
     print("Setting up relays..")
-    GPIO.setup(SSR1, GPIO.OUT)
-    GPIO.setup(SSR2, GPIO.OUT)
-    GPIO.setup(blink_relay1, GPIO.OUT)
-    GPIO.setup(blink_relay2, GPIO.OUT)
     print("Solid State Relay 1: " + str(SSR1))
     print("Solid State Relay 2: " + str(SSR2))
     print("Blink Relay 1: " + str(blink_relay1))
@@ -71,7 +67,6 @@ def setup_relays():
     # time.sleep(2)
 
 def sleep_relays():
-    GPIO.cleanup()
     print("Relays cleaned up for sleep mode")
     print()
 
@@ -113,9 +108,16 @@ def trigger_SSR_relay(relay, state):
         raise Exception("Relay " + str(relay.value) + " cannot be triggered again so soon")
     else:
         last_trigger[relay] = time.time()
-        GPIO.output(relay.value, state.value)
+        if state == RelayState.ON:
+            relay.value.on()
+        else: 
+            relay.value.off()
         print("Relay " + str(relay.value) + " triggered: " + str(state))
 
 def trigger_blink_relay(relay, state):
-    GPIO.output(relay, state.value)
+    if state == RelayState.ON:
+        relay.blink(on_time=0.5, off_time=0.5)
+    else:
+        relay.off()
+
     print("Blink Relay " + str(relay) + " triggered: " + str(state))
