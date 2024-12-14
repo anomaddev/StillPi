@@ -40,8 +40,6 @@ def core_function():
     show_text_on_line(3, "Heater SSRs Ready")
     time.sleep(2)
 
-    test_blink_relay()
-
     # Initialize the screen
     init_screen()
     time.sleep(2)
