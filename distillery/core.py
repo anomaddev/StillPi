@@ -52,9 +52,9 @@ def core_function():
     print("Press the start button to begin")
     update_status("PRESS START") 
 
-    trigger_blink_relay(blink_relay1, RelayState.ON)
-    start_button.wait_for_press()
     trigger_blink_relay(blink_relay1, RelayState.OFF)
+    start_button.wait_for_press()
+    trigger_blink_relay(blink_relay1, RelayState.ON)
     # time.sleep(0.5)
 
     # Start the program loop
