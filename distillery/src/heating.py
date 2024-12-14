@@ -6,6 +6,7 @@
 #
 
 import time
+from functools import reduce
 
 from src.display import *
 from src.temp import *
@@ -41,7 +42,8 @@ def inital_heat():
     print("Starting heat loop...")
     print("Target Temp: " + str(target_temp))
     iterator = 0
-    while current_temp < (target_temp + 3):
+
+    while (current_temp < (target_temp + 3)):
         iterator += 1
         target_temp = read_target_temp()
         current_temp = get_temp()
@@ -51,13 +53,15 @@ def inital_heat():
         # Only print every 10th iteration
         if iterator % 10 == 0:
             print("Current Temp: " + str(current_temp))
+            print("Rate of Change: " + str(rate_of_change()))
+            
 
         update_target(int(target_temp))
         update_temp(int(current_temp))
         time.sleep(0.1)
 
-    print("Initial heat complete!")
     heaters_off()
+    print("Initial heat complete!")
 
 def maintain_heat():
     global target_temp
@@ -117,3 +121,7 @@ def heaters_off():
 
     update_heater1("OFF")
     update_heater2("OFF")
+
+def rate_of_change():
+    avg = reduce(lambda x, y: x + y, [x.temp for x in temp_log]) / len(temp_log)
+    print("Average Temp: " + str(avg))
