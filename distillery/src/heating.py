@@ -53,9 +53,9 @@ def inital_heat():
         # Only print every 10th iteration
         if iterator % 10 == 0:
             print("Current Temp: " + str(current_temp))
+            print("Average Temp: " + str(average_temp()))
             print("Rate of Change: " + str(rate_of_change()))
             
-
         update_target(int(target_temp))
         update_temp(int(current_temp))
         time.sleep(0.1)
@@ -122,16 +122,20 @@ def heaters_off():
     update_heater1("OFF")
     update_heater2("OFF")
 
-def rate_of_change():
+def average_temp():
     avg = reduce(lambda x, y: x + y, [temp.temp for temp in temp_log]) / len(temp_log)
     print("Average Temp: " + str(avg))
+    return avg
 
+def rate_of_change():
     last_second = temp_log[-10:]
     temps = [temp.temp for temp in last_second]
     times = [temp.time for temp in last_second]
 
     # Calculate rate of change
     rate_of_change = [(temps[i+1] - temps[i]) / (times[i+1] - times[i]) for i in range(len(temps)-1)]
-    print(rate_of_change) 
+    average_rate = reduce(lambda x, y: x + y, rate_of_change) / len(rate_of_change)
+    print("Average Rate of Change: " + str(average_rate))
+    return average_rate 
     
     
