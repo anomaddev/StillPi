@@ -86,16 +86,16 @@ def test_blink_relay():
     print("Blink Relay test starting..")
     time.sleep(1)
 
-    trigger_blink_relay(blink_relay1, RelayState.ON)
+    trigger_blink_relay(blink_relay1, RelayState.OFF)
     time.sleep(3)
 
-    trigger_blink_relay(blink_relay1, RelayState.OFF)
+    trigger_blink_relay(blink_relay1, RelayState.ON)
     time.sleep(1)
 
-    trigger_blink_relay(blink_relay2, RelayState.ON)
+    trigger_blink_relay(blink_relay2, RelayState.OFF)
     time.sleep(3)
 
-    trigger_blink_relay(blink_relay2, RelayState.OFF)
+    trigger_blink_relay(blink_relay2, RelayState.ON)
     time.sleep(1)
 
 def trigger_SSR_relay(relay, state):
