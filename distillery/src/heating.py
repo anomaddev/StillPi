@@ -123,5 +123,9 @@ def heaters_off():
     update_heater2("OFF")
 
 def rate_of_change():
-    avg = reduce(lambda x, y: x + y, [x.temp for x in temp_log]) / len(temp_log)
+    avg = reduce(lambda x, y: x + y, [temp.temp for temp in temp_log]) / len(temp_log)
     print("Average Temp: " + str(avg))
+
+    last_second = temp_log[-10:]
+    print(last_second)
+    
