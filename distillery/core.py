@@ -17,7 +17,7 @@ from enum import Enum
 from src.relays import *
 from src.display import *
 from src.temp import *
-from distillery.src.heating import *
+from src.heating import *
 
 start_button = Button(26)
 stop_button = Button(13)
