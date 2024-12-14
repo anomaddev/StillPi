@@ -16,7 +16,6 @@ from gpiozero import Button
 from enum import Enum
 from src.relays import *
 from src.display import *
-from src.interface import *
 from src.temp import *
 from src.programs import *
 
