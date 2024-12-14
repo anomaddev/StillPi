@@ -29,6 +29,8 @@ def core_function():
     print("---------------------------------")
     print()
 
+    GPIO.cleanup()
+
     # Set GPIO mode
     GPIO.setmode(GPIO.BCM)
 
