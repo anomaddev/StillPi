@@ -32,4 +32,4 @@ def temp_update_loop():
 
 def read_target_temp():
     # TODO: Implement target temp input
-    return 180
+    return 100
