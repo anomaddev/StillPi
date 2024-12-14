@@ -52,11 +52,14 @@ def maintain_heat():
     global target_temp
     print("Maintaining temperature...")
     update_status("MAINTAINING")
-    
+
     time.sleep(3) # Let the system stabilize
 
     print("Target Temp: " + str(target_temp))
+    h1 = False
+    h2 = False
     last_trigger = 0
+
     interator = 0
     while interator < 1000:
         interator += 1
@@ -72,10 +75,16 @@ def maintain_heat():
                 print("Current Temp: " + str(current_temp))
             
             last_trigger = time.time()
-            if current_temp < (target_temp - 2):
+            if current_temp < (target_temp - 2) and not h1 and not h2:
                 heaters_on()
-            elif current_temp > (target_temp + 2):
+                h1 = True
+                h2 = True
+
+            elif current_temp > (target_temp + 2) and h1 and h2:
                 heaters_off()
+                h1 = False
+                h2 = False
+
             else:
                 pass
 
