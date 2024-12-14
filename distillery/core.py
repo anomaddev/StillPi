@@ -92,10 +92,11 @@ def program_loop():
 
             case ControllerState.INITIAL_HEAT:
                 inital_heat()
+                state = ControllerState.MAINTAIN_HEAT
 
             case ControllerState.MAINTAIN_HEAT:
+                maintain_heat()
                 state = ControllerState.COMPLETE
-                break
 
             case ControllerState.COMPLETE:
                 break

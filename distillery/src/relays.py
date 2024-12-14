@@ -78,7 +78,7 @@ def test_relay(relay):
 def trigger_relay(relay, state):
     last = last_trigger[relay]
 
-    if time.time() - last < 3:
+    if time.time() - last < 2:
         raise Exception("Relay " + str(relay.value) + " cannot be triggered again so soon")
     else:
         last_trigger[relay] = time.time()
