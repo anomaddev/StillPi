@@ -25,11 +25,7 @@ def inital_heat():
     update_status("HEATING")
 
     # Turn on the heaters
-    trigger_relay(Relay.ONE, RelayState.ON)
-    trigger_relay(Relay.TWO, RelayState.ON)
-
-    update_heater1("ON")
-    update_heater2("ON")
+    heaters_on()
 
     time.sleep(5) # Let the heaters warm up
 
@@ -50,14 +46,10 @@ def inital_heat():
         time.sleep(0.1)
 
     print("Initial heat complete!")
-    # Turn off the heaters
-    trigger_relay(Relay.ONE, RelayState.OFF)
-    trigger_relay(Relay.TWO, RelayState.OFF)
-
-    update_heater1("OFF")
-    update_heater2("OFF")
+    heaters_off()
 
 def maintain_heat():
+    global target_temp
     print("Maintaining temperature...")
     update_status("MAINTAINING")
 
